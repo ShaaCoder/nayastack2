@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* RGB vars for body gradient—light: muted gray with blue-purple hint (minimal, as theme is dark-focused). */
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 10, 0, 20; /* Subtle purple-black bleed */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark: Obsidian core, white-hot text. */
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 5, 0, 20;
+  }
+}
+
+@layer base {
+  :root {
+    /* Light mode: Sparse—grayscale base with blue-purple sparks (rarely used). */
+    --background: 0 0% 98%;        /* Near-white canvas */
+    --foreground: 0 0% 3%;         /* Black text */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3%;
+    --primary: 221 100% 50%;       /* Vibrant blue */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 264 70% 55%;      /* Mystic purple */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 92%;             /* Faint gray */
+    --muted-foreground: 0 0% 45%;
+    --accent: 221 100% 50%;        /* Blue highlight */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;      /* Scarlet alarm */
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 89%;            /* Light seam */
+    --input: 0 0% 89%;
+    --ring: 221 100% 50%;          /* Blue focus */
+    --chart-1: 221 100% 50%;       /* Blue spectrum start */
+    --chart-2: 264 70% 55%;
+    --chart-3: 158 90% 50%;        /* Teal accent */
+    --chart-4: 0 84% 60%;          /* Warning red */
+    --chart-5: 280 100% 65%;       /* Deep violet close */
+    --radius: 0.5rem;
+  }
+  .dark {
+    /* Dark mode: Navy void supremacy—blue-purple veins throughout. */
+    --background: 240 10% 3.9%;    /* Deep navy void */
+    --foreground: 0 0% 98%;        /* Ghost white */
+    --card: 240 10% 8%;            /* Charcoal lift for glass */
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 221 100% 50%;       /* Electric blue pulse */
+    --primary-foreground: 0 0% 0%; /* Dark on blue for contrast */
+    --secondary: 264 70% 55%;      /* Violet undertone */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 4.8% 15.9%;       /* Shadow navy */
+    --muted-foreground: 240 3.7% 15.9%;
+    --accent: 221 100% 55%;        /* Vivid blue glow */
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;  /* Crimson alert */
+    --destructive-foreground: 0 0% 0%;
+    --border: 240 5.9% 10%;        /* Faint navy line */
+    --input: 240 5.9% 10%;
+    --ring: 221 100% 50%;          /* Blue halo */
+    --chart-1: 221 100% 55%;
+    --chart-2: 264 70% 55%;
+    --chart-3: 158 90% 50%;
+    --chart-4: 0 84% 65%;
+    --chart-5: 280 100% 65%;
+  }
+  .theme {
+    --animate-orbit: orbit calc(var(--duration)*1s) linear infinite;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Navy-purple gradient bleed for immersive depth. */
+    background: linear-gradient(
+      to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb))
+    );
+  }
+}
+
+@theme inline {
+  @keyframes orbit {
+    0% {
+      transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+    }
+    100% {
+      transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+    }
+  }
+}
