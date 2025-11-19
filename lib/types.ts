@@ -1,5 +1,5 @@
 import { Types } from 'mongoose';
-
+import { IQuery } from '@/lib/models/Query';
 export type HeadingTOC = {
   level: number;
   text: string;
@@ -45,7 +45,7 @@ export type BlogPostCreateDTO = {
   title: string;
   excerpt?: string;
   content: string;
-  author: string; // user id
+  author: string;
   published_at?: string | null;
   scheduled_at?: string | null;
   category: string;
@@ -77,3 +77,6 @@ export type BlogQuery = {
   page?: number;
   perPage?: number;
 };
+
+/* ---- FIXED: Add QueryLean ---- */
+export type QueryLean = Omit<IQuery, keyof Document> & { _id: Types.ObjectId; };
