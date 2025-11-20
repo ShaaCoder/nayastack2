@@ -11,7 +11,8 @@ export interface IBlogPost extends Document {
   title: string;
   excerpt: string;
   content: string;
-  author: string | mongoose.Types.ObjectId;
+author: { type: String, required: true }
+
   published_at: Date | null;
   scheduled_at?: Date | null;
   category: string;
@@ -45,7 +46,13 @@ const BlogPostSchema = new Schema<IBlogPost>({
   content: { type: String, required: true },
 
   // author stored as ObjectId (recommended). Keep string if you prefer name.
-  author: { type: Schema.Types.ObjectId, ref: 'User', required: true, index: true },
+author: { 
+  type: String, 
+  required: true, 
+  trim: true, 
+  index: true 
+},
+
 
   published_at: { type: Date, default: null, index: true },
   scheduled_at: { type: Date, default: null },
