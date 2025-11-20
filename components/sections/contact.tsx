@@ -19,32 +19,31 @@ export function Contact() {
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  const message = `New Contact Form Query:
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || "N/A"}
+Message: ${formData.message}
+📩 Sent from Nayastack Website`;
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+  const whatsappNumber = "917835996416";
 
-      if (response.ok) {
-        toast.success('Message sent successfully! We\'ll get back to you soon.');
-        setFormData({ name: '', email: '', company: '', message: '' });
-      } else {
-        toast.error('Failed to send message. Please try again.');
-      }
-    } catch (error) {
-      toast.error('An error occurred. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  // Force WhatsApp Web instead of Desktop App
+  const whatsappUrl = `https://web.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+
+  window.open(whatsappUrl, "_blank");
+
+  toast.success("Opening WhatsApp…");
+
+  setFormData({ name: "", email: "", company: "", message: "" });
+  setIsSubmitting(false);
+};
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({

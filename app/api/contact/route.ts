@@ -1,7 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/mongodb';
-import Query from '@/lib/models/Query';
-export const dynamic = 'force-dynamic';
+import { NextRequest, NextResponse } from "next/server";
+import connectDB from "@/lib/mongodb";
+import Query from "@/lib/models/Query";
+
+export const dynamic = "force-dynamic";
+
 export async function POST(request: NextRequest) {
   try {
     await connectDB();
@@ -12,21 +14,21 @@ export async function POST(request: NextRequest) {
     const newQuery = new Query({
       name,
       email,
-      company: company || undefined,
+      company: company ?? "",
       message,
-      status: 'new',
+      status: "new",
     });
 
     await newQuery.save();
 
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Thank you for your message. We\'ll get back to you soon!' 
+    return NextResponse.json({
+      success: true,
+      message: "Thank you for your message. We'll get back to you soon!",
     });
-  } catch (error) {
-    console.error('Contact form error:', error);
+  } catch (error: any) {
+    console.error("CONTACT FORM API ERROR:", error);
     return NextResponse.json(
-      { success: false, message: 'Failed to send message' },
+      { success: false, message: "Failed to save query" },
       { status: 500 }
     );
   }
