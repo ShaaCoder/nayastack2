@@ -66,26 +66,34 @@ export function Hero() {
             }}
             className="lg:text-left text-center space-y-6"
           >
-            <motion.h1
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent leading-tight"
-            >
-              We Build <span className="block bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Epic</span>
-              Digital Realms
-            </motion.h1>
+           <motion.h1
+  variants={{
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  }}
+  className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent leading-tight"
+>
+  We Build High-Performance Websites
+  <span className="block text-white text-4xl md:text-5xl mt-2">
+    for Businesses That Want
+  </span>
+  <span className="block bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+    Real Growth
+  </span>
+</motion.h1>
+
             
-            <motion.p
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              className="text-xl text-gray-300 max-w-lg leading-relaxed"
-            >
-              Crafting bespoke web apps, e-comm empires, and transformative platforms that ignite growth. Your vision, amplified.
-            </motion.p>
+           <motion.p
+  variants={{
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  }}
+  className="text-xl text-gray-300 max-w-xl leading-relaxed"
+>
+  We help schools, startups, and local businesses launch fast, scalable websites
+  that generate leads, build trust, and grow revenue — without tech headaches.
+</motion.p>
+
 
             <motion.div
               variants={{
